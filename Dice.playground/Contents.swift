@@ -23,6 +23,43 @@ struct DiceGroup {
     }
 }
 
+class Dice : UIView {
+    let dieValue: Int
+    let containerView: UIView
+    
+    init(containerView: UIView, dieValue: Int){
+        
+        self.dieValue = dieValue
+        self.containerView = containerView
+        
+        super.init(frame: CGRect(x: 0.0, y: 0.0, width: 100, height: 100))
+        self.backgroundColor = UIColor.whiteColor()
+        self.center = containerView.center
+        self.layer.cornerRadius = 7.0
+        
+        switch(dieValue)
+        {
+        case 1:
+            let spot1 = UIView(frame: CGRect(x: 0.0, y: 0.0, width:8.0, height:8.0))
+            spot1.center = self.center
+            spot1.layer.cornerRadius = 4.0
+            spot1.backgroundColor = UIColor.blackColor()
+            self.insertSubview(spot1, atIndex: 0)
+        default:
+            print("fail")
+        }
+        
+       
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+let dice = Dice(containerView: containerView, dieValue: 1)
+containerView.addSubview(dice)
+
+/*
 
 let dice = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
 dice.center = containerView.center
@@ -80,7 +117,7 @@ dice.addSubview(spot3)
 dice.addSubview(spot2)
 dice.addSubview(spot1)
 containerView.addSubview(dice)
-
+*/
 
 //
 //UIView.animateWithDuration(2.0, animations: { () -> Void in
